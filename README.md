@@ -13,7 +13,6 @@ Built for speed, aesthetics, and zero-maintenance scaling on the Edge.
 
 ## 🤖 Agentic & AI Tooling Used
 
-This project was built iteratively using the **Antigravity IDE** AI agent with the following specific configurations and skills:
 
 ### Applied Agent Skills
 - **`cloudflare` & `wrangler`**: Provided comprehensive knowledge of the Cloudflare developer platform, enabling seamless integration with D1 databases, R2 storage, and local Miniflare environments.
