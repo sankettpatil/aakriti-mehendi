@@ -11,7 +11,7 @@
     {
       "binding": "DB",
       "database_name": "aakriti-db",
-      "database_id": "local"  // Replace with real ID after `wrangler d1 create`
+      "database_id": "81ea02ea-8230-4155-bc74-5bdd60689234"
     }
   ],
 
