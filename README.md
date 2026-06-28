@@ -17,8 +17,12 @@ This project was built iteratively using the **Antigravity IDE** AI agent with t
 
 ### Applied Agent Skills
 - **`cloudflare` & `wrangler`**: Provided comprehensive knowledge of the Cloudflare developer platform, enabling seamless integration with D1 databases, R2 storage, and local Miniflare environments.
-- **`tailwind-4-docs`**: Guided the implementation of the brand new Tailwind CSS v4, utilizing the new `@theme` CSS configurations instead of the legacy `tailwind.config.js`.
-- **`web-design-guidelines`**: Infused the UI with the Vercel engineering team's design standards. This guided the shift towards an ultra-minimalist, high-contrast "tech" aesthetic (geometric fonts like *Inter*, stark black/white contrasts, and crisp 1px dividers) especially visible in the Admin Panel.
+- **Tailwind CSS v4 Skills**: Guided the implementation of the brand new Tailwind CSS v4, utilizing the new `@theme` CSS configurations instead of the legacy `tailwind.config.js`. 
+  - *Reference*: [Lombiq Tailwind-Agent-Skills](https://github.com/Lombiq/Tailwind-Agent-Skills)
+- **Web Design Guidelines**: Infused the UI with the Vercel engineering team's design standards. This guided the shift towards an ultra-minimalist, high-contrast "tech" aesthetic (geometric fonts like *Inter*, stark black/white contrasts, and crisp 1px dividers) especially visible in the Admin Panel.
+  - *References*: [Vercel Design MD](https://getdesign.md/vercel/design-md), [Vercel Labs Web Design Guidelines](https://www.skills.sh/vercel-labs/agent-skills/web-design-guidelines)
+- **Astro Docs MCP Server**: Provided real-time, context-aware assistance for Astro component architecture and integrations.
+  - *Reference*: [Astro Docs MCP Server](https://docs.astro.build/en/guides/build-with-ai/#astro-docs-mcp-server)
 
 ## 👥 Team Setup & Local Development
 
