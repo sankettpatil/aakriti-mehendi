@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FinalCTA from '../components/home/FinalCTA.astro';
+import { Reveal } from '../components/ui/Reveal';
+
+const packages = [
+  {
+    id: 'bridal',
+    name: 'Bridal',
+    image: '/images/mehndi-design-1.png',
+    coverage: 'Exclusive bridal mehendi design',
+    duration: 'Custom',
+    price: 'Custom Quote',
+    includes: ['Consultation call to understand your style', 'Custom design tailored to your lehenga', 'Aftercare guidance for the darkest colour'],
+  },
+  {
+    id: 'destination_wedding',
+    name: 'Destination Wedding',
+    image: '/images/mehndi-design-2.png',
+    coverage: 'Mehendi artist travel to venue',
+    duration: 'Custom',
+    price: 'Custom Quote',
+    includes: ['Travel and accommodation planning', 'Group mehendi sessions', 'Bridal mehendi included'],
+  },
+  {
+    id: 'wedding_function',
+    name: 'Wedding Mehendi Function',
+    image: '/images/mehndi-design-4.png',
+    coverage: 'Mehendi for family and guests',
+    duration: 'Custom',
+    price: 'Custom Quote',
+    includes: ['Flexible scheduling for your timeline', 'Multiple artists available for large groups', 'Customized designs for guests'],
+  },
+  {
+    id: 'pre_wedding',
+    name: 'Pre-Wedding',
+    image: '/images/mehndi-design-3.png',
+    coverage: 'Engagement, haldi, and sangeet ceremonies',
+    duration: '1–2 hours',
+    price: 'From ₹2,500',
+    includes: ['Mix of traditional and contemporary patterns', 'Quick-dry natural henna paste', 'Customized to match your outfit'],
+  },
+  {
+    id: 'festival',
+    name: 'Festival',
+    image: '/images/hero-mehndi.png',
+    coverage: 'Traditional festival celebrations',
+    duration: '1–1.5 hours',
+    price: 'From ₹1,500',
+    includes: ['Ideal for karwa chauth, teej, Diwali', 'Traditional festive patterns', 'Quick application'],
+  },
+  {
+    id: 'birthday_party',
+    name: 'Birthdays & Gatherings',
+    image: '/images/artist-candid.png',
+    coverage: 'Birthday, kitty party, and baby shower gatherings',
+    duration: '1–2 hours',
+    price: 'From ₹1,500',
+    includes: ['Fun and engaging designs', 'Perfect for small groups', 'Safe, natural henna - no chemicals'],
+  },
+  {
+    id: 'corporate_event',
+    name: 'Corporate Event',
+    image: '/images/mehndi-design-1.png',
+    coverage: 'Brand activations and office events',
+    duration: 'Custom',
+    price: 'Custom Quote',
+    includes: ['Fast and simple designs for large crowds', 'Professional setup at your venue', 'Brand logo incorporation available'],
+  },
+  {
+    id: 'casual',
+    name: 'Casual & Personal',
+    image: '/images/mehndi-design-2.png',
+    coverage: 'Personal mehendi sessions',
+    duration: '30–45 mins',
+    price: 'From ₹800',
+    includes: ['Simple beautiful patterns', 'Relaxing 1-on-1 session', 'One or both hands'],
+  }
+];
+
+const faqItems = [
+  { q: 'How far in advance should I book?', a: 'For bridal mehndi, we recommend booking 2–3 months in advance, especially during wedding season (October–March). Occasion bookings can usually be accommodated with 1–2 weeks notice.' },
+  { q: 'Is an advance/token payment required?', a: 'Yes, a token amount of ₹500 is required to confirm your booking. This is adjusted against the final bill. We\'ll share payment details during your confirmation call.' },
+  { q: 'What happens if my event date changes?', a: 'We understand plans change! You can reschedule once for free if you notify us at least 48 hours before the appointment. We\'ll try our best to accommodate your new date.' },
+  { q: 'What\'s the cancellation policy?', a: 'Cancellations made 48+ hours before the appointment get a full refund of the token amount. Cancellations within 48 hours forfeit the token. No-shows are non-refundable.' },
+  { q: 'Do you travel to my city?', a: 'I regularly serve Jaipur, Delhi NCR, Lucknow, and Chandigarh. For other cities, travel charges apply based on distance. Let\'s discuss during the confirmation call.' },
+  { q: 'What should I avoid before mehndi application?', a: 'Avoid applying any oil, lotion, or perfume on the area where mehndi will be applied. Exfoliate your hands/feet the day before for best results.' },
+  { q: 'How do I get the darkest colour?', a: 'Keep the mehndi paste on for 6-8 hours (overnight is best). After removing, avoid water for 12 hours. Apply a mix of lemon juice and sugar to seal the design. Body heat helps - warm hands give darker stains.' },
+  { q: 'Can I see your recent work before booking?', a: 'Absolutely! Check out our Gallery page or follow @aakriti_mehndi on Instagram for daily design posts. I also share WIP videos during bridal sessions.' },
+  { q: 'Do you offer group discounts?', a: 'Yes! For group bookings of 5 or more people, we offer special packages. Contact us for a custom quote tailored to your event.' },
+  { q: 'How long does mehndi last?', a: 'With proper care, mehndi typically lasts 1–3 weeks. Bridal mehndi tends to last longer due to the extended paste application time and aftercare.' },
+  { q: 'Can I customise my design?', a: 'Of course! Every design is customised. We discuss your preferences, wedding theme, outfit, and personal style during the consultation call before your appointment.' },
+  { q: 'What if I don\'t like the design?', a: 'We always start with a brief consultation and can show reference designs. During the session, you can request adjustments. Your comfort and happiness is the priority.' },
+];
+---
+
+<Layout
+  title="Services & Pricing - Aakriti Mehndi Artist"
+  description="Explore our mehndi services: bridal, occasion, group visits, and kids mehndi. Prices starting from ₹500. Book your appointment today."
+>
+  {/* Hero Section */}
+  <section class="pt-32 pb-16 md:pt-48 md:pb-24 bg-bg relative overflow-hidden border-b border-border/50">
+    <div class="max-w-[1400px] mx-auto px-6 text-center">
+      <Reveal client:load>
+        <p class="font-body text-[10px] md:text-xs uppercase tracking-[0.4em] text-brand mb-6 md:mb-8">Services & Pricing</p>
+        <h1 class="font-display text-5xl md:text-7xl lg:text-[90px] leading-[1.1] font-normal tracking-tight text-ink mb-8">
+          Our <span class="italic text-ink/40">Offerings.</span>
+        </h1>
+        <p class="font-body text-ink-muted text-base md:text-[17px] max-w-2xl mx-auto leading-relaxed font-light">
+          Every bride deserves mehndi that tells her story. Choose a service, and let's create something beautiful together.
+        </p>
+      </Reveal>
+    </div>
+  </section>
+
+  {/* Packages List */}
+  <section class="py-24 md:py-32 bg-bg" id="packages">
+    <div class="max-w-[1200px] mx-auto px-6 space-y-32">
+      {packages.map((pkg, i) => (
+        <Reveal client:load delay={0.1}>
+          <div class={`flex flex-col md:flex-row items-center gap-12 md:gap-24 ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`} id={pkg.id}>
+            
+            {/* Image Side */}
+            <div class="w-full md:w-1/2 relative">
+              <div class="aspect-[4/5] rounded-t-[200px] rounded-b-3xl md:rounded-t-[300px] md:rounded-b-[40px] overflow-hidden shadow-sm relative group bg-[#f5f5f5]">
+                <img 
+                  src={pkg.image} 
+                  alt={pkg.name} 
+                  loading="lazy" 
+                  class="w-full h-full object-cover transform transition-transform duration-[2s] group-hover:scale-105" 
+                />
+              </div>
+            </div>
+            
+            {/* Content Side */}
+            <div class="w-full md:w-1/2 flex flex-col items-start text-left">
+              <span class="font-body text-[10px] uppercase tracking-[0.3em] text-brand mb-4">{pkg.coverage}</span>
+              <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-ink mb-8">{pkg.name}</h2>
+              
+              <ul class="space-y-4 mb-10 w-full">
+                {pkg.includes.map(item => (
+                  <li class="flex items-start gap-4 font-body text-[15px] text-ink-muted">
+                    <span class="text-ink/30 mt-1">-</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <div class="flex flex-wrap items-center gap-8 py-6 border-y border-border/50 w-full mb-10">
+                <div class="flex items-center gap-2 font-body text-sm text-ink-muted">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {pkg.duration}
+                </div>
+                <div class="font-body text-sm text-ink-muted">
+                  {pkg.price.toLowerCase().includes('custom') ? (
+                    <strong class="text-ink font-medium tracking-wide">{pkg.price}</strong>
+                  ) : (
+                    <Fragment>Starting from <strong class="text-ink font-medium tracking-wide">{pkg.price}</strong></Fragment>
+                  )}
+                </div>
+              </div>
+              
+              <a 
+                href="/book" 
+                class="inline-flex items-center justify-center font-body text-[11px] uppercase tracking-[0.2em] px-8 py-4 bg-ink text-white hover:bg-ink/80 transition-colors rounded-full"
+              >
+                Book This Service
+              </a>
+            </div>
+
+          </div>
+        </Reveal>
+      ))}
+
+      {/* Note */}
+      <Reveal client:load delay={0.2}>
+        <div class="mt-20 p-8 md:p-12 border border-border/50 rounded-[32px] text-center max-w-3xl mx-auto bg-white/50 backdrop-blur-sm">
+          <p class="font-body text-[13px] md:text-sm text-ink-muted leading-relaxed m-0">
+            * Prices vary by design complexity and travel distance. Final quote shared at booking confirmation. Travel charges apply for locations outside Jaipur.
+          </p>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  {/* FAQ Section */}
+  <section class="py-24 md:py-32 bg-bg border-t border-border/50" id="faq">
+    <div class="max-w-[800px] mx-auto px-6">
+      <Reveal client:load>
+        <div class="text-center mb-16 md:mb-24">
+          <span class="font-body text-[10px] uppercase tracking-[0.3em] text-brand block mb-4">FAQ</span>
+          <h2 class="font-display text-4xl md:text-6xl text-ink">Common Questions</h2>
+        </div>
+      </Reveal>
+
+      <div class="space-y-2">
+        {faqItems.map((item, i) => (
+          <Reveal client:load delay={i * 0.05}>
+            <details class="group border-b border-border/40 pb-6 [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex justify-between items-center font-body text-base md:text-lg text-ink cursor-pointer list-none py-4 hover:text-brand transition-colors">
+                <span class="pr-8">{item.q}</span>
+                <span class="transition-transform duration-300 group-open:rotate-45 text-ink/40 text-2xl font-light shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </span>
+              </summary>
+              <div class="text-ink-muted font-body text-[14px] md:text-[15px] leading-relaxed pt-2 pb-4 pr-12">
+                <p class="m-0">{item.a}</p>
+              </div>
+            </details>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FinalCTA />
+</Layout>

@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════
+   Aakriti Design Tokens — Tailwind v4 @theme
+   ═══════════════════════════════════════════════════════ */
+
+@theme {
+  /* ─── Colors ─── */
+  --color-bg: #FFF8F6;
+  --color-surface: #FFFFFF;
+  --color-border: #FFDAD4;
+  --color-ink: #3B312F;
+  --color-ink-muted: #8C7B78;
+  --color-brand: #982820;
+  --color-brand-light: #FFDAD4;
+  --color-gold: #982820; /* We map gold to brand since the brand is red/peach */
+  --color-gold-light: #FFDAD4;
+  --color-gold-deep: #701B15;
+  --color-success: #2D6A4F;
+  --color-warn: #B35C00;
+  --color-error: #991B1B;
+
+  /* ─── Font Families ─── */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Noto Sans', system-ui, sans-serif;
+  --font-script: 'Cormorant Garamond', serif;
+
+  /* ─── Font Sizes ─── */
+  --text-display-xl: 4rem;        /* 64px */
+  --text-display-lg: 2.75rem;     /* 44px */
+  --text-display-md: 1.75rem;     /* 28px */
+  --text-body-lg: 1.125rem;       /* 18px */
+  --text-body: 1rem;              /* 16px */
+  --text-body-sm: 0.875rem;       /* 14px */
+  --text-label: 0.8125rem;        /* 13px */
+  --text-caption: 0.75rem;        /* 12px */
+
+  /* ─── Spacing ─── */
+  /* We use the default Tailwind spacing scale. */
+
+  /* ─── Border Radius ─── */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 100px;
+  --radius-full: 9999px;
+
+  /* ─── Shadows (Vercel-style stacked) ─── */
+  --shadow-card: 0 2px 16px rgba(28, 20, 9, 0.07);
+  --shadow-card-hover: 0 8px 32px rgba(28, 20, 9, 0.12);
+  --shadow-level-1: 0 0 0 1px rgba(28, 20, 9, 0.06);
+  --shadow-level-2: 0 1px 1px rgba(28, 20, 9, 0.03), 0 2px 4px rgba(28, 20, 9, 0.06), 0 0 0 1px rgba(28, 20, 9, 0.06);
+  --shadow-level-3: 0 2px 4px rgba(28, 20, 9, 0.06), 0 8px 16px -8px rgba(28, 20, 9, 0.08), 0 0 0 1px rgba(28, 20, 9, 0.06);
+  --shadow-level-4: 0 2px 4px rgba(28, 20, 9, 0.06), 0 8px 24px -4px rgba(28, 20, 9, 0.1), 0 0 0 1px rgba(28, 20, 9, 0.06);
+  --shadow-modal: 0 1px 2px rgba(28, 20, 9, 0.04), 0 8px 24px -4px rgba(28, 20, 9, 0.1), 0 24px 48px -8px rgba(28, 20, 9, 0.15);
+
+  /* ─── Breakpoints ─── */
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 960px;
+  --breakpoint-xl: 1200px;
+
+  /* ─── Transitions ─── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* We put custom CSS variables outside of @theme if they overwrite scales we want to keep */
+:root {
+  --width-content: 1200px;
+  
+  /* ─── Spacing ─── */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 40px;
+  --spacing-3xl: 48px;
+  --spacing-4xl: 64px;
+  --spacing-5xl: 96px;
+  --spacing-6xl: 128px;
+}

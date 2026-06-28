@@ -1,11 +1,91 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { HeroSlider } from '../components/home/twf/HeroSlider.tsx';
+import { Tagline } from '../components/home/twf/Tagline.tsx';
+import { TabbedGallery } from '../components/home/twf/TabbedGallery.tsx';
+import { AnnouncementStrip } from '../components/home/AnnouncementStrip';
+import ArtistBio from '../components/home/ArtistBio.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import { Testimonials } from '../components/home/Testimonials';
+import InstagramStrip from '../components/home/InstagramStrip.astro';
+import SEOContent from '../components/home/SEOContent.astro';
+import FAQ from '../components/home/FAQ.astro';
+import FinalCTA from '../components/home/FinalCTA.astro';
+import { getDB } from '../lib/db';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const db = getDB(Astro.locals);
+
+// Fetch active testimonials
+const { results: testimonials } = await db.prepare(
+  'SELECT * FROM testimonials WHERE is_visible = 1 ORDER BY display_order ASC, id DESC LIMIT 6'
+).all();
 ---
 
-<Layout>
-	<Welcome />
+
+<Layout
+  title="Aakriti - Bridal Mehndi Artist | Book Your Appointment Online"
+  description="Aakriti is a professional bridal mehndi artist with 8+ years of experience in intricate, personalised henna designs for weddings, engagements, and special occasions. Book online today."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Aakriti Mehndi Artist",
+      "description": "Professional bridal mehndi artist offering wedding henna, occasion mehndi, group home visits, and kids mehndi. 8+ years of experience in intricate personalised designs.",
+      "url": "https://aakriti.in",
+      "image": "https://aakriti.in/og-image.jpg",
+      "telephone": "+91-98765-43210",
+      "email": "hello@aakriti.in",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "priceRange": "₹500 – ₹8,000+",
+      "openingHours": "Mo-Sa 08:00-18:00",
+      "hasMap": "https://maps.google.com",
+      "sameAs": [
+        "https://instagram.com/aakriti",
+        "https://wa.me/919876543210"
+      ]
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How far in advance should I book?", "acceptedAnswer": { "@type": "Answer", "text": "For bridal mehndi, we recommend booking 2–3 months in advance, especially during wedding season (October–March). Occasion bookings can usually be accommodated with 1–2 weeks notice." } },
+        { "@type": "Question", "name": "Is an advance/token payment required?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, a token amount of ₹500 is required to confirm your booking. This is adjusted against the final bill. We'll share payment details during your confirmation call." } },
+        { "@type": "Question", "name": "What happens if my event date changes?", "acceptedAnswer": { "@type": "Answer", "text": "We understand plans change! You can reschedule once for free if you notify us at least 48 hours before the appointment. We'll try our best to accommodate your new date." } },
+        { "@type": "Question", "name": "What's the cancellation policy?", "acceptedAnswer": { "@type": "Answer", "text": "Cancellations made 48+ hours before the appointment get a full refund of the token amount. Cancellations within 48 hours forfeit the token. No-shows are non-refundable." } },
+        { "@type": "Question", "name": "Do you travel to my city?", "acceptedAnswer": { "@type": "Answer", "text": "I regularly serve Jaipur, Delhi NCR, Lucknow, and Chandigarh. For other cities, travel charges apply based on distance. Let's discuss during the confirmation call." } }
+      ]
+    })} />
+  </Fragment>
+
+  <main class="bg-bg text-ink min-h-screen overflow-x-hidden">
+    {/* TWF Clone Structure */}
+    <HeroSlider client:load />
+    
+    <AnnouncementStrip client:load />
+    
+    <Tagline client:load />
+    <TabbedGallery client:load />
+    
+    {/* Clean Content Retention */}
+    <ArtistBio />
+    <HowItWorks />
+    
+    <section class="py-12 bg-bg border-y border-border/50">
+      <div class="max-w-[1400px] mx-auto px-6">
+        <Testimonials client:visible data={testimonials as any} />
+      </div>
+    </section>
+
+    <SEOContent />
+    
+    <InstagramStrip />
+    
+    <FAQ />
+
+    <FinalCTA />
+  </main>
 </Layout>

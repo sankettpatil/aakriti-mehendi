@@ -1,0 +1,68 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { Reveal } from '../ui/Reveal';
+import { Eye } from 'lucide-react';
+
+interface Props {
+  images?: { src: string; tag: string; layout?: string }[];
+}
+
+const defaultImages = [
+  { src: '/images/hero-mehndi.png', tag: 'Rajasthani Bridal', layout: 'col-span-1 md:col-span-2 row-span-2 aspect-[4/3] md:aspect-auto' },
+  { src: '/images/mehndi-design-1.png', tag: 'Arabic Details', layout: 'col-span-1 row-span-1 aspect-square' },
+  { src: '/images/mehndi-design-2.png', tag: 'Floral Backhand', layout: 'col-span-1 row-span-1 aspect-square' },
+  { src: '/images/mehndi-design-4.png', tag: 'Modern Minimalist', layout: 'col-span-1 aspect-[4/5]' },
+  { src: '/images/mehndi-design-3.png', tag: 'Intricate Feet', layout: 'col-span-1 aspect-[4/5]' },
+  { src: '/images/artist-candid.png', tag: 'Symmetrical Joy', layout: 'col-span-1 aspect-[4/5]' },
+];
+
+const images = Astro.props.images && Astro.props.images.length > 0 ? Astro.props.images : defaultImages;
+---
+
+<section class="section-spacing bg-surface">
+  <div class="section-container">
+    <Reveal client:visible>
+      <SectionHeading
+        eyebrow="Recent Work"
+        heading="Gallery"
+        align="center"
+      />
+    </Reveal>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
+      {images.map((img, index) => (
+        <Reveal client:visible delay={0.1 * index} className={img.layout}>
+          <div class="group relative w-full h-full overflow-hidden bg-bg rounded-lg">
+            <img 
+              src={img.src} 
+              alt={img.tag} 
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-ink/40 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 flex items-center justify-center cursor-pointer">
+              <!-- Tag -->
+              <div class="absolute top-4 left-4">
+                <span class="font-body text-xs font-medium tracking-wide text-white uppercase bg-ink/60 px-3 py-1.5 rounded-sm backdrop-blur-sm">
+                  {img.tag}
+                </span>
+              </div>
+              <!-- Eye Icon -->
+              <div class="text-white transform translate-y-4 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                <Eye className="w-8 h-8" />
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+
+    <Reveal client:visible delay={0.2}>
+      <div class="mt-16 text-center">
+        <a href="/gallery" class="btn btn-ghost">
+          View Full Gallery
+        </a>
+      </div>
+    </Reveal>
+  </div>
+</section>

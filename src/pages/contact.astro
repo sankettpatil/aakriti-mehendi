@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us - Aakriti Mehndi Artist" description="Get in touch with Aakriti for booking inquiries, collaborations, and mehndi event scheduling.">
+  <div class="py-24 bg-surface min-h-screen">
+    <div class="max-w-[800px] mx-auto px-6 text-center">
+      <h1 class="font-display text-4xl md:text-5xl text-ink font-normal tracking-tight mb-6">Contact Us</h1>
+      <p class="font-body text-[16px] font-light text-ink-muted leading-relaxed mb-12 max-w-2xl mx-auto">
+        We would love to hear from you. Whether you want to book a bridal package, discuss an upcoming family event, or inquire about travel availability, we're here to help.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto">
+        <div class="border border-border/50 rounded-xl p-8 bg-bg">
+          <h3 class="font-display text-xl text-ink mb-4">Email</h3>
+          <a href="mailto:hello@aakriti.in" class="font-body text-[15px] font-light text-brand hover:underline">hello@aakriti.in</a>
+        </div>
+        <div class="border border-border/50 rounded-xl p-8 bg-bg">
+          <h3 class="font-display text-xl text-ink mb-4">Phone / WhatsApp</h3>
+          <a href="https://wa.me/919876543210" class="font-body text-[15px] font-light text-brand hover:underline">+91 98765 43210</a>
+        </div>
+      </div>
+      
+      <div class="mt-16">
+        <a href="/book" class="inline-block bg-ink text-white font-body text-[12px] tracking-[0.2em] uppercase px-10 py-4 rounded-full hover:bg-brand transition-colors">
+          Book Your Appointment Online
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,31 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { BookingsTable } from '../../../components/admin/BookingsTable';
+import { getDB } from '../../../lib/db';
+
+const db = getDB(Astro.locals);
+
+// Fetch all bookings with service names
+const { results: initialBookings } = await db.prepare(`
+  SELECT b.*, b.customer_city as event_city, s.name as service_name
+  FROM bookings b
+  LEFT JOIN services s ON b.service_id = s.id
+  ORDER BY b.created_at DESC
+`).all();
+
+// Fetch all active artists to populate assignment dropdowns
+const { results: artists } = await db.prepare(`
+  SELECT id, name FROM artists WHERE is_active = 1 ORDER BY name ASC
+`).all();
+---
+
+<AdminLayout title="Bookings | Aakriti Admin">
+  <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <h1 class="font-bold tracking-tight text-4xl text-gray-900">Bookings</h1>
+      <p class="text-gray-500 text-base mt-2">Manage your appointment requests and assign artists.</p>
+    </div>
+  </div>
+
+  <BookingsTable client:load initialBookings={initialBookings as any} artists={artists as any} />
+</AdminLayout>

@@ -1,0 +1,70 @@
+---
+import { Reveal } from '../ui/Reveal';
+---
+
+<section class="py-24 md:py-32 bg-[#982820] relative overflow-hidden flex flex-col items-center justify-center text-center px-6">
+  <!-- Mehndi Motif Circles -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.12]">
+    <svg viewBox="0 0 1000 1000" class="w-[1000px] h-[1000px] animate-[spin_120s_linear_infinite]" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer circle (400r = 800px diameter) -->
+      <circle cx="500" cy="500" r="400" stroke="white" stroke-width="1" class="mix-blend-overlay" />
+      
+      <!-- Outer Mehndi scallops -->
+      {Array.from({ length: 72 }).map((_, i) => {
+        const angle = (i * 5 * Math.PI) / 180;
+        const cx = 500 + 410 * Math.cos(angle);
+        const cy = 500 + 410 * Math.sin(angle);
+        return <circle cx={cx} cy={cy} r="10" stroke="white" stroke-width="1" class="mix-blend-overlay" fill="none"/>;
+      })}
+
+      <!-- Middle circle (300r = 600px diameter) -->
+      <circle cx="500" cy="500" r="300" stroke="white" stroke-width="1" class="mix-blend-overlay" />
+
+      <!-- Middle Mehndi dots -->
+      {Array.from({ length: 48 }).map((_, i) => {
+        const angle = (i * 7.5 * Math.PI) / 180;
+        const cx = 500 + 285 * Math.cos(angle);
+        const cy = 500 + 285 * Math.sin(angle);
+        return <circle cx={cx} cy={cy} r="4" fill="white" class="mix-blend-overlay" />;
+      })}
+
+      <!-- Inner circle (200r = 400px diameter) -->
+      <circle cx="500" cy="500" r="200" stroke="white" stroke-width="1" class="mix-blend-overlay" />
+
+      <!-- Inner flower petals -->
+      {Array.from({ length: 16 }).map((_, i) => {
+        const angle = (i * 22.5 * Math.PI) / 180;
+        const x1 = 500 + 200 * Math.cos(angle - 0.1);
+        const y1 = 500 + 200 * Math.sin(angle - 0.1);
+        const x2 = 500 + 200 * Math.cos(angle + 0.1);
+        const y2 = 500 + 200 * Math.sin(angle + 0.1);
+        const tipX = 500 + 240 * Math.cos(angle);
+        const tipY = 500 + 240 * Math.sin(angle);
+        return <path d={`M ${x1} ${y1} Q ${500 + 220 * Math.cos(angle-0.15)} ${500 + 220 * Math.sin(angle-0.15)} ${tipX} ${tipY} Q ${500 + 220 * Math.cos(angle+0.15)} ${500 + 220 * Math.sin(angle+0.15)} ${x2} ${y2} Z`} stroke="white" stroke-width="1" class="mix-blend-overlay" fill="none"/>;
+      })}
+      
+      <!-- Inner core dot -->
+      <circle cx="500" cy="500" r="10" fill="white" class="mix-blend-overlay" />
+    </svg>
+  </div>
+
+  <div class="relative z-10 max-w-2xl mx-auto w-full text-center flex flex-col items-center justify-center">
+    <Reveal client:visible width="100%">
+      <h2 class="font-display text-4xl md:text-5xl lg:text-[56px] text-white leading-tight mb-6 text-center w-full">
+        Your wedding deserves art.
+      </h2>
+    </Reveal>
+    
+    <Reveal client:visible delay={0.1} width="100%">
+      <p class="font-body text-white/90 text-sm md:text-base font-light mb-12 tracking-wide text-center w-full">
+        Spots fill quickly. Secure your date today.
+      </p>
+    </Reveal>
+
+    <Reveal client:visible delay={0.2} width="100%" className="flex justify-center">
+      <a href="/book" class="inline-flex items-center justify-center px-10 py-4 bg-white text-[#982820] font-body font-bold text-[12px] tracking-[0.2em] uppercase rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/20">
+        Book Your Appointment
+      </a>
+    </Reveal>
+  </div>
+</section>

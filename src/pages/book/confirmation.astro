@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { CheckCircle2, Calendar, ArrowRight, Home } from 'lucide-react';
+
+const ref = Astro.url.searchParams.get('ref');
+
+// If no reference, redirect back to book
+if (!ref) {
+  return Astro.redirect('/book');
+}
+---
+
+<Layout title="Booking Request Confirmed - Aakriti">
+  <div class="min-h-[calc(100vh-100px)] bg-bg flex items-start pt-6 md:pt-8 justify-center p-4">
+    <div class="max-w-2xl w-full bg-surface border border-border/40 shadow-sm rounded-2xl p-8 md:p-10 text-center">
+      
+      <div class="w-12 h-12 bg-[#982820]/10 rounded-full flex items-center justify-center mx-auto mb-4 text-[#982820]">
+        <CheckCircle2 class="w-6 h-6" />
+      </div>
+      
+      <h1 class="font-display italic text-2xl lg:text-3xl text-ink mb-2 font-normal tracking-tight">Request Received!</h1>
+      
+      <p class="font-body text-[13px] lg:text-[14px] text-ink-muted font-light mb-6 max-w-lg mx-auto leading-relaxed">
+        Thank you for choosing Aakriti. Your booking request has been successfully submitted.
+      </p>
+
+      <div class="bg-surface border border-border/40 rounded-xl p-4 mb-6 inline-block min-w-[240px]">
+        <p class="font-body text-[9px] font-medium text-ink-muted uppercase tracking-[0.2em] mb-1">Your Booking Reference</p>
+        <p class="font-display text-xl font-medium text-[#982820] tracking-widest">{ref}</p>
+      </div>
+
+      <div class="text-left bg-[#FCF9F8] border border-[#8B2C2C]/20 rounded-2xl p-6 md:p-8 mb-8 max-w-md mx-auto">
+        <h4 class="font-display text-[22px] text-ink mb-6">What happens next?</h4>
+        
+        <div class="ml-2 mt-2">
+          <div class="relative pl-6 pb-6">
+            <div class="absolute left-[3.5px] top-[14px] bottom-0 w-[1px] bg-[#8B2C2C]/30"></div>
+            <div class="absolute left-[0px] top-[6.5px] w-[8px] h-[8px] rounded-full bg-[#8B2C2C] ring-[4px] ring-[#FCF9F8] z-10"></div>
+            <p class="font-body text-[14.5px] leading-relaxed">
+              <span class="text-ink font-medium">We review your request:</span> <span class="text-ink/60">We check our schedule and travel logistics.</span>
+            </p>
+          </div>
+          
+          <div class="relative pl-6 pb-6">
+            <div class="absolute left-[3.5px] top-[14px] bottom-0 w-[1px] bg-[#8B2C2C]/30"></div>
+            <div class="absolute left-[0px] top-[6.5px] w-[8px] h-[8px] rounded-full bg-[#8B2C2C] ring-[4px] ring-[#FCF9F8] z-10"></div>
+            <p class="font-body text-[14.5px] leading-relaxed">
+              <span class="text-ink font-medium">We call you (within 24h):</span> <span class="text-ink/60">To discuss design preferences, pricing, and confirm location.</span>
+            </p>
+          </div>
+          
+          <div class="relative pl-6">
+            <div class="absolute left-[0px] top-[6.5px] w-[8px] h-[8px] rounded-full bg-[#8B2C2C] ring-[4px] ring-[#FCF9F8] z-10"></div>
+            <p class="font-body text-[14.5px] leading-relaxed">
+              <span class="text-ink font-medium">Advance Payment:</span> <span class="text-ink/60">Once discussed, we'll send a payment link to secure the booking.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href={`/book/status/${ref}`}
+          class="w-full sm:w-auto px-8 py-3.5 font-body font-semibold text-[10px] uppercase tracking-[0.2em] border-2 border-[#982820] text-[#982820] hover:bg-[#982820]/5 rounded-full transition-all"
+        >
+          View Status
+        </a>
+        <a 
+          href="/"
+          class="w-full sm:w-auto px-8 py-3.5 font-body font-semibold text-[10px] uppercase tracking-[0.2em] bg-[#982820] text-white hover:bg-[#982820]/80 shadow-lg hover:-translate-y-0.5 rounded-full transition-all flex items-center justify-center gap-2"
+        >
+          <Home class="w-3.5 h-3.5" /> Return Home
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>

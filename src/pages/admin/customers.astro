@@ -1,0 +1,10 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { CustomersManager } from '../../components/admin/CustomersManager';
+
+// Auth is handled in middleware
+---
+
+<AdminLayout title="Customers CRM | Aakriti Admin">
+  <CustomersManager client:load />
+</AdminLayout>

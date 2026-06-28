@@ -1,0 +1,66 @@
+---
+import { Reveal } from '../ui/Reveal';
+---
+
+<section class="w-full bg-bg text-ink py-16 md:py-24 relative overflow-hidden flex flex-col items-center border-t border-border/40">
+  
+  {/* Subtle grain/texture overlay */}
+  <div class="absolute inset-0 opacity-[0.02] mix-blend-multiply pointer-events-none" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }}></div>
+
+  {/* Elegant Header */}
+  <div class="text-center mb-12 md:mb-16 px-6 relative z-10 w-full max-w-4xl mx-auto">
+    <Reveal client:visible>
+      <p class="font-body text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-brand mb-6">The Collective</p>
+      <h2 class="font-display text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-normal tracking-tight text-ink mx-auto">
+        A carefully curated team of <br class="hidden md:block" />
+        <span class="text-ink/60 italic font-light">elite artists.</span>
+      </h2>
+    </Reveal>
+  </div>
+
+  {/* Cinematic Image Showcase */}
+  <div class="w-full max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+    
+    <div class="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1 px-4 lg:px-0">
+      <Reveal client:visible delay={0.2}>
+        <div class="w-12 h-px bg-border/80 mb-10"></div>
+        <p class="font-body text-base md:text-[17px] text-ink-muted leading-relaxed font-light mb-8 max-w-md">
+          Aakriti Mehndi started with a single artist learning from her Nani in Jaipur. Today, it has grown into an elite collective of master Mehndi artists, each handpicked for their unwavering dedication to the craft.
+        </p>
+        <p class="font-body text-base md:text-[17px] text-ink-muted leading-relaxed font-light mb-12 max-w-md">
+          We believe that your mehndi should feel like an extension of your story, not just a beautiful design picked from a catalogue. Every stroke matters.
+        </p>
+        <a 
+          href="/about" 
+          class="group inline-flex items-center gap-4 text-ink font-body text-[11px] tracking-[0.3em] uppercase hover:text-brand transition-colors"
+        >
+          Meet The Artists
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="transform group-hover:translate-x-2 transition-transform duration-500">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke-linecap="square"/>
+          </svg>
+        </a>
+      </Reveal>
+    </div>
+
+    <div class="lg:col-span-7 relative order-1 lg:order-2 group">
+      <Reveal client:visible delay={0.1}>
+        <div class="aspect-[4/5] md:aspect-[16/9] lg:aspect-[4/3] overflow-hidden relative shadow-2xl bg-black rounded-t-[400px] rounded-b-3xl">
+          <img 
+            src="https://images.unsplash.com/photo-1542038383-7744cd874139?q=80&w=2000&auto=format&fit=crop" 
+            alt="The Collective working"
+            class="w-full h-full object-cover opacity-90 transform transition-transform duration-[2s] group-hover:scale-[1.03]"
+          />
+          {/* Deep cinematic shadow over the image */}
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-[#0a0a0a]/20 to-transparent"></div>
+          <div class="absolute inset-0 bg-black/10 mix-blend-multiply"></div>
+          
+          {/* Decorative caption inside the image frame */}
+          <div class="absolute bottom-8 left-8 md:bottom-12 md:left-12">
+            <p class="font-script text-2xl md:text-3xl lg:text-4xl text-white/90 drop-shadow-xl">Our family of artists</p>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+    
+  </div>
+</section>

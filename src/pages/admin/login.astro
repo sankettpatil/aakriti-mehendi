@@ -1,0 +1,55 @@
+---
+import { AdminLoginForm } from '../../components/admin/AdminLoginForm';
+import '../../styles/app.css';
+
+// If already logged in, redirect to admin dashboard
+const sessionCookie = Astro.cookies.get('admin_session')?.value;
+if (sessionCookie) {
+  // In a real scenario, you'd want to verify the KV token here too,
+  // but middleware already handles full protection.
+  // We can just redirect if the cookie exists.
+  return Astro.redirect('/admin');
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | Aakriti Mehndi</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Professional Admin Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      html, body, .font-sans, h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen flex items-center justify-center p-6 antialiased font-sans">
+    <div class="w-full max-w-md">
+      <div class="text-center mb-10">
+        <div class="inline-flex flex-col mb-2">
+          <span class="font-bold tracking-tight text-4xl text-gray-900 leading-none">Aakriti</span>
+          <span class="text-[10px] font-semibold tracking-widest uppercase text-gray-500 mt-2">Admin Portal</span>
+        </div>
+        <p class="text-gray-500 text-sm mt-4">Sign in to manage your bookings and schedule.</p>
+      </div>
+
+      <div class="bg-white rounded-md shadow-none border border-gray-200 p-8 md:p-10">
+        <AdminLoginForm client:load />
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+          &larr; Back to Website
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

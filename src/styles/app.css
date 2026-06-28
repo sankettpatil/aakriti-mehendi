@@ -1,0 +1,11 @@
+/* ═══════════════════════════════════════════════════════
+   Aakriti — CSS Entrypoint
+   Tailwind v4 CSS-first configuration
+   ═══════════════════════════════════════════════════════ */
+
+@import "tailwindcss";
+@source "../**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}";
+
+@import "./theme.css";
+@import "./base.css";
+@import "./components.css";

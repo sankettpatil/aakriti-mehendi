@@ -1,0 +1,86 @@
+---
+import { Reveal } from '../ui/Reveal';
+
+const services = [
+  {
+    number: '01',
+    name: 'Bridal Mehndi',
+    description: 'Full bridal coverage - both hands, arms, and feet with intricate traditional designs.',
+    duration: '3–4 hrs',
+    price: 'From ₹8k',
+    image: 'https://images.unsplash.com/photo-1596455607563-ad6193f76b17?q=80&w=800&auto=format&fit=crop',
+  },
+  {
+    number: '02',
+    name: 'Occasion Mehndi',
+    description: 'Elegant, striking designs for engagements, karwa chauth, and special celebrations.',
+    duration: '1–1.5 hrs',
+    price: 'From ₹2.5k',
+    image: 'https://images.unsplash.com/photo-1605335198425-4b35e2ab2509?q=80&w=800&auto=format&fit=crop',
+  },
+  {
+    number: '03',
+    name: 'Home Visit & Groups',
+    description: 'Exclusive group sessions for families, bridesmaids, and wedding parties.',
+    duration: 'Custom',
+    price: 'Quote',
+    image: 'https://images.unsplash.com/photo-1621008064972-2300bcfdecf8?q=80&w=800&auto=format&fit=crop',
+  },
+  {
+    number: '04',
+    name: 'Kids & Family',
+    description: 'Fun, light designs for children and family members - perfect for mehndi parties.',
+    duration: '30 min',
+    price: 'From ₹500',
+    image: 'https://images.unsplash.com/photo-1542038383-7744cd874139?q=80&w=800&auto=format&fit=crop',
+  }
+];
+---
+
+<section class="w-full bg-bg py-16 md:py-24" id="services">
+  <div class="max-w-[1400px] mx-auto px-6">
+    
+    <Reveal client:visible>
+      <div class="mb-12 md:mb-16 text-center">
+        <p class="font-body text-[10px] md:text-xs uppercase tracking-[0.3em] text-brand mb-4">Our Offerings</p>
+        <h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-ink font-normal tracking-tight">
+          Curated Services
+        </h2>
+      </div>
+    </Reveal>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      {services.map((service, index) => (
+        <Reveal client:visible delay={0.1 * index}>
+          <a href="/book" class="group block cursor-pointer">
+            <div class="aspect-[3/4] overflow-hidden relative mb-6 rounded-t-full rounded-b-2xl shadow-sm">
+              <img
+                src={service.image}
+                alt={service.name}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-ink/10 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0"></div>
+              
+              <div class="absolute top-4 left-4">
+                <span class="font-script text-3xl text-white/90 drop-shadow-md italic">{service.number}</span>
+              </div>
+            </div>
+            
+            <div class="flex flex-col">
+              <div class="flex justify-between items-baseline mb-2">
+                <h3 class="font-display text-xl md:text-2xl text-ink">{service.name}</h3>
+                <span class="font-body text-[11px] uppercase tracking-wider text-ink font-medium">{service.price}</span>
+              </div>
+              <p class="font-body text-ink-muted text-sm leading-relaxed font-light mb-4">
+                {service.description}
+              </p>
+              <div class="w-full h-px bg-border/60 transition-colors duration-500 group-hover:bg-brand/40"></div>
+            </div>
+          </a>
+        </Reveal>
+      ))}
+    </div>
+
+  </div>
+</section>

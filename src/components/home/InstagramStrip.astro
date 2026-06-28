@@ -1,0 +1,71 @@
+---
+import { Reveal } from '../ui/Reveal';
+
+const images = [
+  '/images/hero-mehndi.png',
+  '/images/mehndi-design-1.png',
+  '/images/mehndi-design-2.png',
+  '/images/mehndi-design-4.png',
+  '/images/mehndi-design-3.png',
+  '/images/artist-candid.png',
+];
+---
+
+<section class="bg-surface overflow-hidden py-20 md:py-32 border-t border-border/40">
+  <div class="max-w-[1400px] mx-auto px-6">
+    
+    <Reveal client:visible>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-20">
+        <div>
+          <p class="font-body flex items-center gap-2 text-[10px] md:text-xs uppercase tracking-[0.4em] text-brand mb-4 md:mb-6">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            Instagram
+          </p>
+          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-ink font-normal tracking-tight">
+            Follow the journey
+          </h2>
+        </div>
+        <a href="https://instagram.com/aakriti_mehndi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-4 text-ink font-body text-[11px] tracking-[0.2em] uppercase hover:text-brand transition-colors mb-2">
+          <span>Follow @aakriti_mehndi</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="transform transition-transform duration-300 group-hover:translate-x-2">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke-linecap="square"/>
+          </svg>
+        </a>
+      </div>
+    </Reveal>
+
+    <!-- Strip -->
+    <Reveal client:visible delay={0.2}>
+      <div class="grid grid-cols-3 md:grid-cols-6 gap-[2px] md:gap-1 rounded-2xl md:rounded-3xl overflow-hidden border border-border/20">
+        {images.map((src) => (
+          <a 
+            href="https://instagram.com/aakriti_mehndi" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="aspect-square overflow-hidden group relative bg-bg block rounded-none"
+          >
+            <img 
+              src={src} 
+              alt="Instagram post by Aakriti" 
+              class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            {/* Elegant overlay */}
+            <div class="absolute inset-0 bg-ink/40 opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100 flex flex-col items-center justify-center gap-3 backdrop-blur-[2px]">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Reveal>
+    
+  </div>
+</section>

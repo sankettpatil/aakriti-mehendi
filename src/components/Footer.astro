@@ -1,0 +1,335 @@
+---
+const quickLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Check Booking Status', href: '/status' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Services', href: '/services' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Contact Us', href: '/contact' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+];
+
+const serviceLinks = [
+  { label: 'Bridal', href: '/services#bridal' },
+  { label: 'Destination Wedding', href: '/services#destination_wedding' },
+  { label: 'Wedding Mehendi Function', href: '/services#wedding_function' },
+  { label: 'Pre-Wedding', href: '/services#pre_wedding' },
+  { label: 'Festival', href: '/services#festival' },
+  { label: 'Birthdays & Gatherings', href: '/services#birthday_party' },
+  { label: 'Corporate Event', href: '/services#corporate_event' },
+  { label: 'Casual & Personal', href: '/services#casual' },
+];
+
+const cities = [
+  'Jaipur', 'Delhi', 'Noida', 'Gurugram', 'Ghaziabad', 'Faridabad',
+  'Lucknow', 'Chandigarh', 'Agra', 'Meerut',
+  'Mathura', 'Haridwar',
+];
+---
+
+<footer class="footer" id="site-footer">
+  <!-- Mandala watermark background -->
+  <div class="footer__mandala" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__mandala-svg">
+      <circle cx="200" cy="200" r="180" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+      <circle cx="200" cy="200" r="140" stroke="currentColor" stroke-width="0.5" opacity="0.25"/>
+      <circle cx="200" cy="200" r="100" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
+      <circle cx="200" cy="200" r="60" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+      {Array.from({ length: 12 }).map((_, i) => {
+        const angle = (i * 30 * Math.PI) / 180;
+        const x1 = 200 + 60 * Math.cos(angle);
+        const y1 = 200 + 60 * Math.sin(angle);
+        const x2 = 200 + 180 * Math.cos(angle);
+        const y2 = 200 + 180 * Math.sin(angle);
+        return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" stroke-width="0.3" opacity="0.15" />;
+      })}
+      {Array.from({ length: 8 }).map((_, i) => {
+        const angle = (i * 45 * Math.PI) / 180;
+        const cx = 200 + 120 * Math.cos(angle);
+        const cy = 200 + 120 * Math.sin(angle);
+        return <circle cx={cx} cy={cy} r="15" stroke="currentColor" stroke-width="0.4" fill="none" opacity="0.12" />;
+      })}
+    </svg>
+  </div>
+
+  <div class="footer__inner section-container">
+    <!-- Column 1: Brand -->
+    <div class="footer__col footer__col--brand">
+      <a href="/" class="footer__logo">
+        <span class="footer__logo-script">Aakriti</span>
+        <span class="footer__logo-label">MEHNDI ARTIST</span>
+      </a>
+      <p class="footer__tagline">
+        Intricate, lasting mehndi for your most important day.
+        Serving brides across North India with 8+ years of artistry.
+      </p>
+      <h4 class="footer__col-title mt-8 mb-4">STAY CONNECTED</h4>
+      <div class="footer__social">
+        <a href="https://instagram.com/aakriti_mehndi" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer__social-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer__col">
+      <h4 class="footer__col-title">Quick Links</h4>
+      <ul class="footer__list">
+        {quickLinks.map(link => (
+          <li><a href={link.href} class="footer__link">{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Column 3: Services -->
+    <div class="footer__col">
+      <h4 class="footer__col-title">Services</h4>
+      <ul class="footer__list">
+        {serviceLinks.map(link => (
+          <li><a href={link.href} class="footer__link">{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Column 4: Contact -->
+    <div class="footer__col">
+      <h4 class="footer__col-title">Get in Touch</h4>
+      <ul class="footer__list">
+        <li class="footer__contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+919876543210" class="footer__link">+91 98765 43210</a>
+        </li>
+        <li class="footer__contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:hello@aakriti.in" class="footer__link">hello@aakriti.in</a>
+        </li>
+        <li class="footer__contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="footer__link">Jaipur</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Cities strip -->
+  <div class="footer__cities section-container">
+    <div class="footer__cities-wrap">
+      {cities.map(city => (
+        <span class="footer__city-tag">{city}</span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="border-t border-white/10 w-full mt-4">
+    <div class="section-container py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-white/40">
+      <p>© {new Date().getFullYear()} Aakriti Mehndi Artist. All rights reserved.</p>
+      <p>Crafted with care for every bride.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    background-color: var(--color-ink);
+    color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Mandala background */
+  .footer__mandala {
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    color: var(--color-brand);
+    opacity: 0.04;
+  }
+
+  .footer__mandala-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Grid */
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: var(--spacing-3xl);
+    padding-top: var(--spacing-4xl);
+    padding-bottom: var(--spacing-3xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Brand column */
+  .footer__logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .footer__logo-script {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    color: white;
+    line-height: 1;
+  }
+
+  .footer__logo-label {
+    font-family: var(--font-body);
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 2px;
+  }
+
+  .footer__tagline {
+    font-size: var(--text-body-sm);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 var(--spacing-lg);
+    max-width: 280px;
+  }
+
+  .footer__social {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .footer__social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--text-body-sm);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer__social-link:hover {
+    color: #982820;
+  }
+
+  /* Columns */
+  .footer__col-title {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 var(--spacing-lg);
+  }
+
+  .footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .footer__link {
+    font-size: var(--text-body-sm);
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer__link:hover {
+    color: #982820;
+  }
+
+  .footer__contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Cities */
+  .footer__cities {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .footer__cities-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    justify-content: center;
+  }
+
+  .footer__city-tag {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    color: rgba(255, 255, 255, 0.4);
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-pill);
+    transition: all 0.2s ease;
+  }
+
+  .footer__city-tag:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  /* Copyright */
+  .footer__copyright {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer__copyright p {
+    font-size: var(--text-caption);
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0;
+  }
+
+  .footer__credit {
+    font-style: italic;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .footer__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+    }
+
+    .footer__col--brand {
+      grid-column: 1 / -1;
+    }
+
+    .footer__copyright {
+      flex-direction: column;
+      gap: var(--spacing-xs);
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

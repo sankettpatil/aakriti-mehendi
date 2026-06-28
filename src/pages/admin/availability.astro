@@ -1,0 +1,43 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { AvailabilityManager } from '../../components/admin/AvailabilityManager';
+import { getDB, getAllAvailabilityRules } from '../../lib/db';
+import 'react-day-picker/dist/style.css';
+
+const db = getDB(Astro.locals);
+
+// Fetch initial data
+const rules = await getAllAvailabilityRules(db);
+
+const { results: blocks } = await db.prepare(
+  "SELECT * FROM blocked_slots WHERE blocked_date >= date('now', '+05:30') ORDER BY blocked_date ASC"
+).all();
+
+// Ensure all days 0-6 exist in rules
+const days = [0, 1, 2, 3, 4, 5, 6];
+const initialRules = days.map(day => {
+  const existing = rules.find(r => r.day_of_week === day);
+  if (existing) return existing;
+  return {
+    id: day * 100, // mock ID for new ones
+    day_of_week: day,
+    start_time: '10:00',
+    end_time: '18:00',
+    slot_gap_min: 30,
+    is_active: 0 // false
+  };
+});
+---
+
+<AdminLayout title="Availability | Aakriti Admin">
+  <div class="mb-8">
+    <h1 class="font-bold tracking-tight text-4xl text-gray-900">Availability</h1>
+    <p class="text-gray-500 text-base mt-2">Manage your weekly working hours and block off specific dates.</p>
+  </div>
+
+  <AvailabilityManager 
+    client:load 
+    initialRules={initialRules as any} 
+    initialBlocks={blocks as any} 
+  />
+</AdminLayout>

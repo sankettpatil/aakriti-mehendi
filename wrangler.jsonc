@@ -1,0 +1,33 @@
+{
+  // Aakriti Mehndi — Cloudflare configuration
+  // Used by @astrojs/cloudflare adapter + wrangler CLI
+
+  "name": "aakriti-website",
+  "compatibility_date": "2025-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // D1 Database
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "aakriti-db",
+      "database_id": "local"  // Replace with real ID after `wrangler d1 create`
+    }
+  ],
+
+  // KV Namespaces
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "local"
+    }
+  ],
+
+  // R2 Buckets
+  "r2_buckets": [
+    {
+      "binding": "GALLERY_BUCKET",
+      "bucket_name": "aakriti-gallery-local"
+    }
+  ]
+}

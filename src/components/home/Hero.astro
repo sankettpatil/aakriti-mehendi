@@ -1,0 +1,69 @@
+---
+import { Reveal } from '../ui/Reveal';
+---
+
+<section class="relative min-h-screen overflow-hidden">
+  <!-- Full Bleed Image -->
+  <img 
+    src="/images/hero-mehndi.png" 
+    alt="Bridal Mehndi Art" 
+    class="absolute inset-0 w-full h-full object-cover object-center z-0"
+  />
+  
+  <!-- Gradient Overlay -->
+  <div class="hero-gradient absolute inset-0 z-10"></div>
+
+  <!-- Content Container -->
+  <div class="relative z-20 w-full lg:max-w-[54%] px-6 lg:px-16 flex flex-col justify-center h-full min-h-screen py-24 lg:py-0 gap-5">
+    
+    <Reveal client:load delay={0.1}>
+      <p class="font-body text-[13px] font-semibold tracking-[0.2em] uppercase mb-0" style="color: rgba(255,255,255,0.6)">North India · Bridal Mehndi</p>
+    </Reveal>
+
+    <Reveal client:load delay={0.2}>
+      <h1 class="font-display text-[56px] lg:text-[72px] leading-[1.05] tracking-tight mb-0" style="color: #ffffff">
+        Art that<br />stays
+      </h1>
+    </Reveal>
+
+    <Reveal client:load delay={0.3}>
+      <p class="font-body text-lg leading-relaxed max-w-md mb-4" style="color: rgba(255,255,255,0.75)">
+        Intricate, lasting mehndi for your most important day. Serving brides across Jaipur, Delhi, Lucknow & beyond.
+      </p>
+    </Reveal>
+
+    <Reveal client:load delay={0.4}>
+      <div class="flex flex-col sm:flex-row gap-4 mb-4 mt-8">
+        <a href="/book" class="btn btn-primary">
+          Book Now
+        </a>
+        <a href="/gallery" class="btn btn-ghost border-white/50 text-white/90 hover:bg-white/10 hover:text-white">
+          View My Work
+        </a>
+      </div>
+    </Reveal>
+
+    <Reveal client:load delay={0.5}>
+      <div class="flex items-center gap-3 font-body text-[13px] font-semibold tracking-wider uppercase" style="color: rgba(255,255,255,0.5)">
+        <span>500+ Brides</span>
+        <span class="w-1 h-1 rounded-full bg-white/30"></span>
+        <span>8 Years</span>
+        <span class="w-1 h-1 rounded-full bg-white/30"></span>
+        <span>12 Cities</span>
+      </div>
+    </Reveal>
+
+  </div>
+</section>
+
+<style>
+  .hero-gradient {
+    /* Darker on mobile to ensure text readability since there's less horizontal space */
+    background: linear-gradient(to right, rgba(12,6,4,0.92) 0%, rgba(12,6,4,0.7) 100%);
+  }
+  @media (min-width: 1024px) {
+    .hero-gradient {
+      background: linear-gradient(to right, rgba(12,6,4,0.82) 0%, rgba(12,6,4,0.55) 42%, rgba(12,6,4,0.12) 70%, transparent 100%);
+    }
+  }
+</style>

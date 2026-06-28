@@ -1,0 +1,68 @@
+---
+interface Props {
+  light?: boolean;
+}
+
+const { light = false } = Astro.props;
+
+const stats = [
+  { number: '500+', label: 'Brides' },
+  { number: '8', label: 'Years' },
+  { number: '12', label: 'Cities' },
+];
+---
+
+<div class:list={['social-proof', { 'social-proof--light': light }]}>
+  {stats.map((stat, i) => (
+    <>
+      <div class="social-proof__item">
+        <span class="social-proof__number">{stat.number}</span>
+        <span class="social-proof__label">{stat.label}</span>
+      </div>
+      {i < stats.length - 1 && <span class="social-proof__dot" aria-hidden="true">·</span>}
+    </>
+  ))}
+</div>
+
+<style>
+  .social-proof {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .social-proof__item {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .social-proof__number {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--text-body-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .social-proof__label {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--text-label);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  .social-proof--light .social-proof__label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .social-proof__dot {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+    line-height: 1;
+  }
+</style>

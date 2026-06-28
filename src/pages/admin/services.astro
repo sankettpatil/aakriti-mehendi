@@ -1,0 +1,10 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { ServicesManager } from '../../components/admin/ServicesManager';
+
+// Assuming auth is handled in middleware like other routes
+---
+
+<AdminLayout title="Services | Aakriti Admin">
+  <ServicesManager client:load />
+</AdminLayout>

@@ -1,0 +1,115 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getDB, getBookingByRef } from '../../../lib/db';
+import { format, parseISO } from 'date-fns';
+import { Clock, CheckCircle2, XCircle, AlertCircle } from 'lucide-react';
+
+const { ref } = Astro.params;
+
+if (!ref) {
+  return Astro.redirect('/');
+}
+
+const db = getDB(Astro.locals);
+const booking = await getBookingByRef(db, ref);
+
+if (!booking) {
+  return new Response('Booking not found', { status: 404 });
+}
+
+// Map status to UI
+const statusConfig = {
+  pending: {
+    label: 'Pending Review',
+    color: 'text-warn',
+    bg: 'bg-warn/10',
+    border: 'border-warn/20',
+    icon: Clock,
+    desc: 'We have received your request and will contact you within 24 hours to confirm.'
+  },
+  confirmed: {
+    label: 'Confirmed',
+    color: 'text-success',
+    bg: 'bg-success/10',
+    border: 'border-success/20',
+    icon: CheckCircle2,
+    desc: 'Your appointment is confirmed. See you soon!'
+  },
+  declined: {
+    label: 'Declined',
+    color: 'text-error',
+    bg: 'bg-error/10',
+    border: 'border-error/20',
+    icon: XCircle,
+    desc: 'Unfortunately, we could not accept this booking. Please contact us for details.'
+  },
+  cancelled: {
+    label: 'Cancelled',
+    color: 'text-ink-muted',
+    bg: 'bg-bg',
+    border: 'border-border',
+    icon: AlertCircle,
+    desc: 'This appointment has been cancelled.'
+  }
+};
+
+const statusObj = statusConfig[booking.status as keyof typeof statusConfig] || statusConfig.pending;
+const Icon = statusObj.icon;
+---
+
+<Layout title={`Booking Status ${ref} - Aakriti`}>
+  <div class="min-h-[calc(100vh-100px)] bg-bg flex items-start pt-6 md:pt-8 justify-center p-4">
+    <div class="max-w-2xl w-full bg-surface border border-border/40 shadow-sm rounded-2xl p-8 md:p-10 text-center">
+      
+      {/* Header */}
+      <div class={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 ${statusObj.bg} ${statusObj.color}`}>
+        <Icon className="w-6 h-6" />
+      </div>
+      
+      <h1 class={`font-display italic text-2xl lg:text-3xl mb-2 font-normal tracking-tight ${statusObj.color}`}>
+        {statusObj.label}
+      </h1>
+      
+      <p class="font-body text-[13px] lg:text-[14px] text-ink-muted font-light mb-6 max-w-lg mx-auto leading-relaxed">
+        {statusObj.desc}
+      </p>
+
+      {/* Ref Box */}
+      <div class="bg-surface border border-border/40 rounded-xl p-4 mb-6 inline-block min-w-[240px]">
+        <p class="font-body text-[9px] font-medium text-ink-muted uppercase tracking-[0.2em] mb-1">Your Booking Reference</p>
+        <p class="font-display text-xl font-medium text-[#982820] tracking-widest">{booking.booking_ref}</p>
+      </div>
+
+      {/* Details Grid */}
+      <div class="text-left bg-surface border border-border/40 rounded-xl p-5 mb-8 max-w-md mx-auto grid grid-cols-2 gap-y-4 gap-x-4">
+        <div>
+          <p class="font-body text-[9px] uppercase tracking-widest text-ink-muted/70 mb-0.5">Service</p>
+          <p class="font-medium text-[13px] text-ink">{booking.service_name}</p>
+        </div>
+        <div>
+           <p class="font-body text-[9px] uppercase tracking-widest text-ink-muted/70 mb-0.5">Requested On</p>
+           <p class="font-light text-[13px] text-ink">{format(new Date(booking.created_at + 'Z'), 'd MMM yyyy')}</p>
+        </div>
+        <div>
+          <p class="font-body text-[9px] uppercase tracking-widest text-ink-muted/70 mb-0.5">Date</p>
+          <p class="font-light text-[13px] text-ink">{format(parseISO(booking.appointment_date), 'd MMM yyyy')}</p>
+        </div>
+        <div>
+          <p class="font-body text-[9px] uppercase tracking-widest text-ink-muted/70 mb-0.5">Time</p>
+          <p class="font-light text-[13px] text-ink">{booking.appointment_time}</p>
+        </div>
+        <div class="col-span-2">
+          <p class="font-body text-[9px] uppercase tracking-widest text-ink-muted/70 mb-0.5">Name</p>
+          <p class="font-medium text-[13px] text-ink capitalize">{booking.customer_name}</p>
+        </div>
+      </div>
+
+      <div class="mt-2 text-center">
+        <a href="/" class="font-body font-semibold text-[10px] uppercase tracking-[0.2em] text-[#982820] hover:text-[#982820]/80 transition-colors">
+          &larr; Back to Home
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>

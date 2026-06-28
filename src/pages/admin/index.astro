@@ -1,0 +1,136 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+import { getDB } from "../../lib/db";
+import type { Booking } from "../../lib/db";
+import { Calendar, Users, AlertCircle, TrendingUp, Eye } from "lucide-react";
+import { DashboardUpcomingBookings } from "../../components/admin/DashboardUpcomingBookings";
+
+const db = getDB(Astro.locals);
+
+// Get pending count
+const pendingResult = await db
+  .prepare("SELECT COUNT(*) as count FROM bookings WHERE status = 'pending'")
+  .first();
+const pendingCount = pendingResult ? (pendingResult as any).count : 0;
+
+// Get confirmed this week
+const confirmedWeekResult = await db
+  .prepare(
+    "SELECT COUNT(*) as count FROM bookings WHERE status = 'confirmed' AND appointment_date >= date('now', '+05:30') AND appointment_date <= date('now', '+05:30', '+7 days')",
+  )
+  .first();
+const confirmedWeekCount = confirmedWeekResult
+  ? (confirmedWeekResult as any).count
+  : 0;
+
+// Get total this month
+const totalMonthResult = await db
+  .prepare(
+    "SELECT COUNT(*) as count FROM bookings WHERE status IN ('pending', 'confirmed', 'completed') AND strftime('%Y-%m', appointment_date) = strftime('%Y-%m', 'now', '+05:30')",
+  )
+  .first();
+const totalMonthCount = totalMonthResult ? (totalMonthResult as any).count : 0;
+
+// Get upcoming bookings (next 7 days)
+const { results: upcomingBookings } = await db
+  .prepare(
+    `
+  SELECT b.id, b.booking_ref, b.appointment_date, b.appointment_time, b.customer_name, b.customer_city, b.status, s.name as service_name, b.occasion_type, a.name as artist_name, b.assigned_artist_id, b.estimated_price_min, b.estimated_price_max, b.final_confirmed_price, b.booking_urgency, b.travel_charge, b.customer_phone, b.customer_whatsapp, b.customer_email, b.location_type, b.venue_address, b.headcount_numeric, b.estimated_duration_mins, b.recommended_package
+  FROM bookings b
+  LEFT JOIN services s ON b.service_id = s.id
+  LEFT JOIN artists a ON b.assigned_artist_id = a.id
+  WHERE b.appointment_date >= date('now', '+05:30') AND b.appointment_date <= date('now', '+05:30', '+7 days') AND b.status = 'confirmed'
+  ORDER BY b.appointment_date ASC, b.appointment_time ASC
+  LIMIT 10
+`,
+  )
+  .all();
+
+// Next appointment
+const nextAppointment =
+  upcomingBookings.length > 0 ? upcomingBookings[0] : null;
+
+// Fetch artists for the detail panel
+const { results: artists } = await db
+  .prepare(
+    `
+  SELECT id, name FROM artists WHERE is_active = 1 ORDER BY name ASC
+`,
+  )
+  .all();
+---
+
+<AdminLayout title="Dashboard | Aakriti Admin">
+  <div class="mb-8">
+    <h1 class="font-bold tracking-tight text-4xl text-gray-900">Dashboard</h1>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-gray-200 border border-gray-200 rounded-lg overflow-hidden bg-white mb-10">
+    <div class="p-6 flex flex-col">
+      <div class="mb-4">
+        <h3 class="font-medium text-gray-500 text-sm">Pending Requests</h3>
+      </div>
+      <div class="text-5xl font-bold tracking-tight text-gray-900 mb-2">{pendingCount}</div>
+      <p class="text-xs text-gray-500">Needs your attention</p>
+    </div>
+
+    <div class="p-6 flex flex-col">
+      <div class="mb-4">
+        <h3 class="font-medium text-gray-500 text-sm">Next 7 Days</h3>
+      </div>
+      <div class="text-5xl font-bold tracking-tight text-gray-900 mb-2">{confirmedWeekCount}</div>
+      <p class="text-xs text-gray-500">Confirmed appointments</p>
+    </div>
+
+    <div class="p-6 flex flex-col">
+      <div class="mb-4">
+        <h3 class="font-medium text-gray-500 text-sm">This Month</h3>
+      </div>
+      <div class="text-5xl font-bold tracking-tight text-gray-900 mb-2">{totalMonthCount}</div>
+      <p class="text-xs text-gray-500">Total bookings created</p>
+    </div>
+
+    <div class="p-6 flex flex-col">
+      <div class="mb-4">
+        <h3 class="font-medium text-gray-500 text-sm">Up Next</h3>
+      </div>
+      {
+        nextAppointment ? (
+          <>
+            <div class="text-sm font-semibold tracking-tight text-gray-900 truncate mb-0.5">
+              {(nextAppointment as any).customer_name}
+            </div>
+            <p class="text-xs text-gray-500 truncate">
+              {(nextAppointment as any).appointment_date}
+              {(nextAppointment as any).appointment_time
+                ? ` at ${(nextAppointment as any).appointment_time}`
+                : ""}
+            </p>
+            {(nextAppointment as any).artist_name ? (
+              <div class="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-gray-50 border border-gray-200 rounded-md text-xs font-medium text-gray-600">
+                <div class="w-4 h-4 rounded bg-gray-200 flex items-center justify-center text-[9px] font-bold text-gray-600">
+                  {(nextAppointment as any).artist_name.charAt(0).toUpperCase()}
+                </div>
+                Assigned to {(nextAppointment as any).artist_name}
+              </div>
+            ) : (
+              <div class="mt-2 inline-flex items-center gap-1.5 px-2 py-1 bg-red-50 text-red-600 border border-red-100 rounded-md text-xs font-medium">
+                Unassigned
+              </div>
+            )}
+          </>
+        ) : (
+          <div class="text-xs text-gray-500 flex-1 flex items-center">
+            No upcoming confirmed appointments.
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <DashboardUpcomingBookings
+    client:load
+    upcomingBookings={upcomingBookings}
+    artists={artists}
+  />
+</AdminLayout>

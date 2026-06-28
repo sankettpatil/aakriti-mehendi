@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { BookingFlow } from '../../components/book/BookingFlow';
+
+// Prevent SSR for this page, let it be purely client-side React
+// to handle the complex state of the booking wizard.
+// However, Astro can prerender the shell if we want, but since we use
+// hybrid/server output, we can just load the React component.
+---
+
+<Layout title="Book an Appointment - Aakriti" hideNav={true}>
+  <BookingFlow client:only="react" />
+</Layout>

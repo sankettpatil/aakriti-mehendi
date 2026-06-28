@@ -1,0 +1,58 @@
+---
+// FAQ.astro
+const faqItems = [
+  { q: 'How far in advance should I book?', a: 'For bridal mehndi, we recommend booking 2–3 months in advance, especially during wedding season (October–March). Occasion bookings can usually be accommodated with 1–2 weeks notice.' },
+  { q: 'Is an advance/token payment required?', a: 'Yes, a token amount of ₹500 is required to confirm your booking. This is adjusted against the final bill. We\'ll share payment details during your confirmation call.' },
+  { q: 'What happens if my event date changes?', a: 'We understand plans change! You can reschedule once for free if you notify us at least 48 hours before the appointment. We\'ll try our best to accommodate your new date.' },
+  { q: 'What\'s the cancellation policy?', a: 'Cancellations made 48+ hours before the appointment get a full refund of the token amount. Cancellations within 48 hours forfeit the token. No-shows are non-refundable.' },
+  { q: 'Do you travel to my city?', a: 'I regularly serve Jaipur, Delhi NCR, Lucknow, and Chandigarh. For other cities, travel charges apply based on distance. Let\'s discuss during the confirmation call.' },
+];
+---
+
+<section class="py-24 bg-surface border-y border-border/40 relative">
+  <div class="max-w-[1200px] mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+      
+      <!-- Left Column: Heading -->
+      <div class="lg:col-span-4 lg:sticky lg:top-32">
+        <h2 class="font-display text-3xl md:text-4xl text-ink font-normal tracking-tight mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="font-body text-[14px] font-light text-ink-muted leading-relaxed">
+          Everything you need to know before booking your mehndi appointment. If you have any other questions, feel free to ask during your consultation.
+        </p>
+      </div>
+
+      <!-- Right Column: Accordion -->
+      <div class="lg:col-span-8 flex flex-col">
+        {faqItems.map((item) => (
+          <details class="group border-b border-border/50 py-5 [&_summary::-webkit-details-marker]:hidden">
+            <summary class="flex justify-between items-center font-display text-lg text-ink cursor-pointer list-none hover:text-brand transition-colors">
+              <span class="pr-8">{item.q}</span>
+              <span class="relative flex-shrink-0 w-4 h-4 text-ink group-hover:text-brand transition-colors">
+                <!-- Plus Icon (Default) -->
+                <svg class="absolute inset-0 w-4 h-4 transition-transform duration-300 group-open:rotate-180 group-open:opacity-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+                </svg>
+                <!-- Minus Icon (Open) -->
+                <svg class="absolute inset-0 w-4 h-4 opacity-0 transition-all duration-300 group-open:rotate-180 group-open:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 12H4" />
+                </svg>
+              </span>
+            </summary>
+            <p class="font-body text-[14.5px] font-light leading-relaxed text-ink-muted mt-4 pr-6 pb-2 hidden group-open:block animate-in fade-in slide-in-from-top-2 duration-300">
+              {item.a}
+            </p>
+          </details>
+        ))}
+        
+        <div class="mt-8 pt-6">
+          <p class="font-body text-[14px] text-ink-muted">
+            Any other doubts ? <a href="mailto:hello@aakriti.in" class="text-brand hover:underline font-medium"> Contact us</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
